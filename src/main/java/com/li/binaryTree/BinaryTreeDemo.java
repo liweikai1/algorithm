@@ -47,10 +47,10 @@ public class BinaryTreeDemo {
         System.out.println("11111111");
         infixNode(root , list);*/
         //后续遍历
-        postNode(root,list) ;
+       /* postNode(root,list) ;*/
 
-        /*int depth = maxDepth(root);
-        System.out.println("depth =" + depth);*/
+        int depth = maxDepth(root);
+        System.out.println("depth =" + depth);
 
 //        int path = sumNumbers(root, 0);
        /* int path = sumNumbers(root , 0);

@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
 输入：nums = [3,30,34,5,9]
 输出："9534330"
  */
-public class maxNumber {
+public class largestNumber {
     public static void main(String[] args) {
         int[] nums = {10 ,2 ,1} ;
         String largestNumber = largestNumber(nums);
