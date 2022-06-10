@@ -18,10 +18,7 @@ class SingleLinkedList {
         LinkedList singleLinkedList = new LinkedList();
 
         //向链表中加入各个节点
-        singleLinkedList.add(hero1);
-        singleLinkedList.add(hero2);
-        singleLinkedList.add(hero3);
-        singleLinkedList.add(hero4);
+        singleLinkedList.add(hero1);singleLinkedList.add(hero2);singleLinkedList.add(hero3);singleLinkedList.add(hero4);
 
         //打印原链表
         System.out.println("原来链表的情况~~");
@@ -99,12 +96,12 @@ class SingleLinkedList {
     * @Param: [head, index]
     * @return: com.li.linkedList.HeroNode
     * @Date: 2022/6/7
-    //思路
-    //1. 编写一个方法，接收head节点，同时接收一个index
-    //2. index 表示是倒数第index个节点
-    //3. 先把链表从头到尾遍历，得到链表的总的长度 getLength
-    //4. 得到size 后，我们从链表的第一个开始遍历 (size-index)个，就可以得到
-    //5. 如果找到了，则返回该节点，否则返回null
+    思路
+    1. 编写一个方法，接收head节点，同时接收一个index
+    2. index 表示是倒数第index个节点
+    3. 先把链表从头到尾遍历，得到链表的总的长度 getLength
+    4. 得到size 后，我们从链表的第一个开始遍历 (size-index)个，就可以得到
+    5. 如果找到了，则返回该节点，否则返回null
     */
     public static HeroNode findLastIndexNode(HeroNode head, int index) {
         //判断如果链表为空，返回null
@@ -124,7 +121,6 @@ class SingleLinkedList {
             cur = cur.next;
         }
         return cur;
-
     }
 
    /**
@@ -146,4 +142,46 @@ class SingleLinkedList {
         }
         return length;
     }
+    /**
+    * @Description: 获取链表的中间结点
+     * 思路：
+     * 采用快慢指针，快指针比慢指针多走一格，当快指针走到终点时，慢指针走一半。
+    * @Param: [head]
+    * @return: com.li.linkedList.HeroNode
+    * @Date: 2022/6/8
+    */
+    public static HeroNode middleNode(HeroNode head) {
+        HeroNode fast = head ;
+        HeroNode slow = head ;
+        while (fast.next != null || fast.next.next != null){
+            fast = fast.next.next ;
+            slow = slow.next ;
+        }
+        if (fast.next == null){
+            return slow ;
+        }else{
+            return slow.next ;
+        }
+    }
+    /**
+    * @Description: 合并两个链表
+    合并前：l1->l2->l3
+          l5->l6->l7
+    合并后：l1->l5->l2->l6->l3->l7
+    * @Param: [h1, h2]
+    * @return: com.li.linkedList.HeroNode
+    * @Date: 2022/6/9
+    */
+    public static void mergeNode(HeroNode h1 , HeroNode h2){
+        while(h1 != null && h2 != null){
+            HeroNode p1 = h1.next ;
+            HeroNode p2 = h2.next ;
+            h1.next = h2 ;
+            h1 = p1 ;
+            h2.next = h1 ;
+            h2 = p2 ;
+        }
+    }
+
+
 }
