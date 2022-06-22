@@ -29,6 +29,7 @@ public class bestTimeToBuyAndSellStockWithTransactionFee {
     public static void main(String[] args) {
         int[] prices = {9,8,7,1,2} ;
         int maxProfit = maxProfit(prices, 3) ;
+        String s = "a" ;
         System.out.println(maxProfit) ;
     }
     //贪心策略分三种情况：

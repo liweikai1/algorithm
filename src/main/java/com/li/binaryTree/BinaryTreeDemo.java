@@ -9,20 +9,22 @@ import java.util.*;
  */
 public class BinaryTreeDemo {
 
-    static ArrayList<Integer>  list = new ArrayList<>();
+    public static ArrayList<Integer>  list = new ArrayList<>();
+    public static int depth ;
+    public static int val ;
 
     public static void main(String[] args) {
 
         //创建二叉树
         BinaryTree binaryTree = new BinaryTree();
         //创建需要的节点
-        HeroNode1 root = new HeroNode1(1, "宋江");
-        HeroNode1 node1 = new HeroNode1(2, "吴用");
-        HeroNode1 node2 = new HeroNode1(3, "卢俊义");
-        HeroNode1 node3 = new HeroNode1(4, "林冲");
-        HeroNode1 node4 = new HeroNode1(5, "关胜");
-        HeroNode1 node5 = new HeroNode1(6, "武松");
-        HeroNode1 node6 = new HeroNode1(7, "鲁智深");
+        HeroNode root = new HeroNode(1, "宋江");
+        HeroNode node1 = new HeroNode(2, "吴用");
+        HeroNode node2 = new HeroNode(3, "卢俊义");
+        HeroNode node3 = new HeroNode(4, "林冲");
+        HeroNode node4 = new HeroNode(5, "关胜");
+        HeroNode node5 = new HeroNode(6, "武松");
+        HeroNode node6 = new HeroNode(7, "鲁智深");
         //创建二叉树节点
         binaryTree.setNode(root);
         root.left = node1;
@@ -35,31 +37,35 @@ public class BinaryTreeDemo {
         int[] preOrder = {1,2,4,5,3,6,7} ;
         int[] inOrder =  {4,2,5,1,6,3,7} ;
         int[] posOrder = {4,5,2,6,7,3,1} ;
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> li = new ArrayList<>();
 
         //前序遍历
       /*  preNode(root , list);*/
        /* delNode(root,3);
-        preNode(root , list);*/
+         preNode(root , list);*/
+
         //中序遍历
        /* infixNode(root , list);*/
        /* delNode(root,1);
         System.out.println("11111111");
         infixNode(root , list);*/
+
         //后续遍历
        /* postNode(root,list) ;*/
 
-        int depth = maxDepth(root);
-        System.out.println("depth =" + depth);
+        //求该树的最大深度
+        /*int depth = maxDepth(root);
+        System.out.println("depth =" + depth);*/
 
-//        int path = sumNumbers(root, 0);
-       /* int path = sumNumbers(root , 0);
+        //根节点到叶子节点的路径数字之和
+       /* int path = sumNumbers(root);
         System.out.println("sum =" + path);*/
 
-        /*rightSideView(root , 0);
+        //二叉树的右视图
+       /* rightSideView(root , 0);
         System.out.println(list);*/
 
-      /*  int countNodes = countNodes(root);
+       /* int countNodes = countNodes(root);
         System.out.println("完全二叉树的节点个数 = " + countNodes);*/
 
        /* HeroNode1 ancestor = lowestCommonAncestor(root, node3, node4);
@@ -96,6 +102,14 @@ public class BinaryTreeDemo {
         /*HeroNode1 buildTree = buildTree(preorder, inorder);
         System.out.println(buildTree);*/
 
+        //二叉树最底层最左边的值
+       /* int bottomLeftValue = findBottomLeftValue(root);
+        System.out.println(bottomLeftValue);*/
+
+        //向下的路径节点之和
+        int pathSomeSum = pathSomeSum(root, 7);
+        System.out.println(pathSomeSum);
+
     }
     /**
     * @Description: 迭代法：前序遍历
@@ -103,7 +117,7 @@ public class BinaryTreeDemo {
     * @return: void
     * @Date: 2022/2/21
     */
-    public static void preNode(HeroNode1 root , List<Integer> res){
+    public static void preNode(HeroNode root , List<Integer> res){
         if (root == null){
             return ;
         }
@@ -119,7 +133,7 @@ public class BinaryTreeDemo {
      * @return: void
      * @Date: 2022/2/21
      */
-    public static void infixNode(HeroNode1 root , List<Integer> res){
+    public static void infixNode(HeroNode root , List<Integer> res){
         if (root == null){
             return ;
         }
@@ -135,7 +149,7 @@ public class BinaryTreeDemo {
      * @return: void
      * @Date: 2022/2/21
      */
-    public static void postNode(HeroNode1 root , List<Integer> res){
+    public static void postNode(HeroNode root , List<Integer> res){
         if (root == null){
             return ;
         }
@@ -151,7 +165,7 @@ public class BinaryTreeDemo {
     * @return: void
     * @Date: 2022/2/21
     */
-    public static void delNode(HeroNode1 root , int no){
+    public static void delNode(HeroNode root , int no){
         if (root != null && root.no == no){
             root = null ;
             return;
@@ -178,7 +192,7 @@ public class BinaryTreeDemo {
     * @return: int
     * @Date: 2022/2/28
     */
-    public static int maxDepth(HeroNode1 root) {
+    public static int maxDepth(HeroNode root) {
         if(root == null){
             return 0 ;
         }
@@ -221,61 +235,61 @@ public class BinaryTreeDemo {
     * @return: int
     * @Date: 2022/2/27
     */
-    public static int sumNumbers(HeroNode1 root , int sum){
+   /* public static int sumNumbers(HeroNode root , int sum){
         if(root == null){
             return 0 ;
         }
         sum =sum * 10 + root.no ;
         if(root.left == null && root.right == null){
             return sum ;
-        }/*else{
+        }*//*else{
             return sumNumbers(root.left , sum) + sumNumbers(root.right , sum) ;
-        }*/
+        }*//*
         int a = sumNumbers(root.left,sum) ;
         int b = sumNumbers(root.right,sum) ;
         int c = a + b ;
         return c ;
-    }
+    }*/
     /**
     * @Description: 求根节点到叶节点数字之和,  广度优先搜索算法
     * @Param: [root]
     * @return: int
     * @Date: 2022/2/27
     */
-    /*public static int sumNumbers(HeroNode1 root) {
+    public static int sumNumbers(HeroNode root) {
         if(root == null){
             return 0 ;
         }
-        Queue<HeroNode1> queue = new LinkedList<>() ;
+        Queue<HeroNode> queue = new LinkedList<>() ;
         Queue<Integer> num = new LinkedList<>() ;
         queue.offer(root) ;
-        num.offer(0) ;
+        num.offer(root.no) ;
         int sum = 0 ;
         while(!queue.isEmpty()){
-            HeroNode1 node = queue.poll() ;
-            sum = num.poll() * 10 + node.no ;
+            HeroNode node = queue.poll() ;
+            int nums = num.poll() ;
             if(node.left == null && node.right == null){
-                return sum ;
+                sum += nums ;
             }else {
                 if (node.left != null){
                     queue.offer(node.left) ;
-                    num.offer(sum) ;
+                    num.offer(nums * 10 + node.left.no) ;
                 }
                 if (node.right != null){
                     queue.offer(node.right) ;
-                    num.offer(sum) ;
+                    num.offer(nums * 10 + node.right.no) ;
                 }
             }
         }
         return sum ;
-    }*/
+    }
     /**
     * @Description: 二叉树的右视图
     * @Param: [root, depth]
     * @return: void
     * @Date: 2022/2/28
     */
-    public static void rightSideView (HeroNode1 root , int depth){
+    public static void rightSideView (HeroNode root , int depth){
         if(root == null){
             return ;
         }
@@ -292,7 +306,7 @@ public class BinaryTreeDemo {
     * @return: int
     * @Date: 2022/3/3
     */
-    public static int countNodes(HeroNode1 root){
+    public static int countNodes(HeroNode root){
         if(root == null){
             return 0  ;
         }
@@ -306,7 +320,7 @@ public class BinaryTreeDemo {
     * @return: int
     * @Date: 2022/3/9
     */
-    public static int countNode(HeroNode1 root) {
+    public static int countNode(HeroNode root) {
         if(root == null){
             return 0;
         }
@@ -324,7 +338,7 @@ public class BinaryTreeDemo {
     * @return: int
     * @Date: 2022/3/9
     */
-    private static int countLevel(HeroNode1 root){
+    private static int countLevel(HeroNode root){
         int level = 0;
         while(root != null){
             level++;
@@ -338,7 +352,7 @@ public class BinaryTreeDemo {
     * @return: TreeNode
     * @Date: 2022/3/9
     */
-    public static HeroNode1 lowestCommonAncestor(HeroNode1 root, HeroNode1 p, HeroNode1 q) {
+    public static HeroNode lowestCommonAncestor(HeroNode root, HeroNode p, HeroNode q) {
         if ((root.no - p.no) * (root.no - q.no) <= 0){
             return root ;
         }
@@ -361,12 +375,12 @@ public class BinaryTreeDemo {
         p,q两节点都在 root的 右子树 中，此时的 right指向 最近公共祖先节点 ；
     当 left不为空 ， right为空 ：与情况 3. 同理；
      */
-    public static HeroNode1 CommonAncestor(HeroNode1 root, HeroNode1 p, HeroNode1 q) {
+    public static HeroNode CommonAncestor(HeroNode root, HeroNode p, HeroNode q) {
         if(root == null || root == p || root == q){
             return root ;
         }
-        HeroNode1 left = CommonAncestor(root.left , p , q) ;
-        HeroNode1 right = CommonAncestor(root.right , p ,q) ;
+        HeroNode left = CommonAncestor(root.left , p , q) ;
+        HeroNode right = CommonAncestor(root.right , p ,q) ;
         if(left == null){
             return right ;
         }
@@ -381,18 +395,18 @@ public class BinaryTreeDemo {
     * @return: java.util.List<java.util.List<java.lang.Integer>>
     * @Date: 2022/3/29
     */
-    public static List<List<Integer>> levelOrder(HeroNode1 root) {
+    public static List<List<Integer>> levelOrder(HeroNode root) {
         if(root == null){
             return new ArrayList<List<Integer>>() ;
         }
         List<List<Integer>> list = new ArrayList<>() ;
-        Queue<HeroNode1> queue = new LinkedList() ;
+        Queue<HeroNode> queue = new LinkedList() ;
         queue.offer(root) ;
         while(!queue.isEmpty()){
             List<Integer> val = new ArrayList<>() ;
             int size = queue.size() ;
             for(int i = 0 ; i < size ; i++){
-                HeroNode1 node = queue.poll() ;
+                HeroNode node = queue.poll() ;
                 val.add(node.no) ;
                 if(node.left != null){
                     queue.offer(node.left) ;
@@ -413,16 +427,16 @@ public class BinaryTreeDemo {
     * @Date: 2022/3/29
     采用双线链表法，偶数层将值添加进临时双线链表的尾部，奇数层添加进双线链表的头部
     */
-    public static List<List<Integer>>zigzagLevelOrder1(HeroNode1 root) {
+    public static List<List<Integer>>zigzagLevelOrder1(HeroNode root) {
         List<List<Integer>> list = new ArrayList<>() ;
         if(root == null) return list ;
-        Queue<HeroNode1> queue = new LinkedList<>() ;
+        Queue<HeroNode> queue = new LinkedList<>() ;
         queue.offer(root) ;
         while(!queue.isEmpty()){
             int size = queue.size() ;
             LinkedList<Integer> res = new LinkedList<>() ;
             for(int i = 0 ; i < size ; i++){
-                HeroNode1 node = queue.poll() ;
+                HeroNode node = queue.poll() ;
                 if(list.size() % 2 == 1){
                     res.addFirst(node.no) ;
                 }else{
@@ -448,20 +462,20 @@ public class BinaryTreeDemo {
     * @Date: 2022/3/14
      采用奇偶分层法，分层操作，步骤较复杂，不推荐使用
     */
-    public static List<List<Integer>> zigzagLevelOrder(HeroNode1 root) {
+    public static List<List<Integer>> zigzagLevelOrder(HeroNode root) {
         if(root == null){
             return new ArrayList<List<Integer>>() ;
         }
         int depth = 2 ;
         List<List<Integer>> list = new ArrayList<>() ;
-        Deque<HeroNode1> deque = new LinkedList() ;
+        Deque<HeroNode> deque = new LinkedList() ;
         deque.offer(root) ;
         while(!deque.isEmpty()){
             List<Integer> val = new ArrayList<>() ;
             int size = deque.size() ;
             if(depth % 2 == 0){
                 for(int i = 0 ; i < size ; i++){
-                    HeroNode1 node = deque.pollFirst() ;
+                    HeroNode node = deque.pollFirst() ;
                     val.add(node.no) ;
                     if(node.left != null){
                         deque.offerLast(node.left) ;
@@ -472,7 +486,7 @@ public class BinaryTreeDemo {
                 }
             }else{
                 for(int i = 0 ; i < size ; i++){
-                    HeroNode1 node = deque.pollLast() ;
+                    HeroNode node = deque.pollLast() ;
                     val.add(node.no) ;
                     if(node.right != null){
                         deque.offerFirst(node.right) ;
@@ -498,7 +512,7 @@ public class BinaryTreeDemo {
    * @return: com.li.BinaryTree.HeroNode1
    * @Date: 2022/3/29
    */
-    public static boolean mirrorTree(HeroNode1 p , HeroNode1 q) {
+    public static boolean mirrorTree(HeroNode p , HeroNode q) {
         if(p == null && q == null){
             return true ;
         }
@@ -519,7 +533,7 @@ public class BinaryTreeDemo {
     2.判断树 A中 以 n_A为根节点的子树 是否包含树 B。（对应函数 isSubStructureDfs(A, B)）
 
     */
-    public static boolean isSubStructure(HeroNode1 A, HeroNode1 B) {
+    public static boolean isSubStructure(HeroNode A, HeroNode B) {
         if(A == null || B == null)  return false ;
         if(A.no == B.no && isSubStructureDfs(A.left , B.left) && isSubStructureDfs(A.right , B.right)){
             return true;
@@ -528,7 +542,7 @@ public class BinaryTreeDemo {
         }
 
     }
-    public static boolean isSubStructureDfs(HeroNode1 A , HeroNode1 B){
+    public static boolean isSubStructureDfs(HeroNode A , HeroNode B){
         if(B == null) return true ;
         if(A == null) return false ;
         if(A.no == B.no){
@@ -549,7 +563,7 @@ public class BinaryTreeDemo {
     * @return: java.util.List<java.util.List<java.lang.Integer>>
     * @Date: 2022/4/5
     */
-    public static List<List<Integer>> pathSum(HeroNode1 root, int target) {
+    public static List<List<Integer>> pathSum(HeroNode root, int target) {
         LinkedList<List<Integer>> list = new LinkedList<>();
         LinkedList<Integer> res = new LinkedList<>();
         recur(root, target , list ,res);
@@ -558,7 +572,7 @@ public class BinaryTreeDemo {
 
     //List<>数组只能删除指定下标的元素比如（res.remove(2)），在不知道数组长度的时候无法删除最后一个元素
     //而在本题中，回溯至上一个节点就是用删除当前节点的方法，所以用LinkedList更方便
-    public static void recur(HeroNode1 root, int target , LinkedList<List<Integer>> list , LinkedList<Integer> res) {
+    public static void recur(HeroNode root, int target , LinkedList<List<Integer>> list , LinkedList<Integer> res) {
         if(root == null) return;
         res.add(root.no);
         target -= root.no;
@@ -589,11 +603,11 @@ public class BinaryTreeDemo {
      分析：
     此树的深度等于左子树的深度与右子树的深度中的最大值 +1 。
     */
-    public static boolean isBalanced(HeroNode1 root) {
+    public static boolean isBalanced(HeroNode root) {
         return dfsBalanced(root) != -1;
     }
 
-    private static int dfsBalanced(HeroNode1 root) {
+    private static int dfsBalanced(HeroNode root) {
         if (root == null) return 0;
         int left = dfsBalanced(root.left);
         if(left == -1) return -1;
@@ -623,20 +637,107 @@ public class BinaryTreeDemo {
     通过以上三步，可确定 三个节点 ：1.树的根节点、2.左子树根节点、3.右子树根节点。
     根据「分治算法」思想，对于树的左、右子树，仍可复用以上方法划分子树的左右子树。
     */
-    public static HeroNode1 buildTree(int[] preorder, int[] inorder) {
+    public static HeroNode buildTree(int[] preorder, int[] inorder) {
         HashMap<Integer , Integer> map = new HashMap<>() ;
         for(int i = 0 ; i < inorder.length ; i++){
             map.put(inorder[i] , i) ;
         }
         return recur(preorder , map ,0 , 0 , inorder.length - 1) ;
     }
-    public static HeroNode1 recur(int[] preorder ,HashMap<Integer,Integer> map , int root , int left , int right){
+    public static HeroNode recur(int[] preorder , HashMap<Integer,Integer> map , int root , int left , int right){
         if(left > right) return null ;
-        HeroNode1 node = new HeroNode1(preorder[root]) ;
+        HeroNode node = new HeroNode(preorder[root]) ;
         int index = map.get(preorder[root]) ;
         node.left = recur(preorder , map ,root+1 , left , index - 1) ;
         node.right = recur(preorder , map, index - left + root + 1, index + 1 , right) ;
         return node ;
     }
+    /**
+     * @Description: 二叉树最底层最左边的值
+      dfs(深度优先搜索遍历方法)
+    * @Param: [root]
+    * @return: int
+    * @Date: 2022/6/16
+    */
+    public static int findBottomLeftValue(HeroNode root) {
+        depth = 0 ;
+        dfs(root,0) ;
+        return val ;
+    }
+    public static void dfs(HeroNode root ,  int maxHeight){
+        if (root == null) return  ;
+        if (maxHeight == depth){
+            val = root.no ;
+            depth++ ;
+        }
+        dfs(root.left,maxHeight+1);
+        dfs(root.right,maxHeight+1);
+    }
+
+    /**
+    * @Description: 二叉树最底层最左边的值
+      bfs(广度优先搜索遍历方法)
+    * @Param: [root]
+    * @return: int
+    * @Date: 2022/6/16
+    */
+   /* public static int findBottomLeftValue(HeroNode root) {
+        Queue<HeroNode> qu = new LinkedList<>() ;
+        qu.offer(root) ;
+        int val = root.no ;
+        while (!qu.isEmpty()){
+            int size = qu.size() ;
+            for(int i = 0 ; i < size ; i++){
+                HeroNode node = qu.poll() ;
+                if(i == 0){
+                    val = node.no ;
+                }
+                if (node.left != null) qu.offer(node.left) ;
+                if (node.right != null) qu.offer(node.right) ;
+            }
+        }
+        return val ;
+    }*/
+
+    /**
+    * @Description: 向下的路径节点之和
+    给定一个二叉树的根节点 root ，和一个整数 targetSum ，求该二叉树里节点值之和等于
+    targetSum 的路径的数目。
+    路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。
+    * @Param: [root, targetSum]
+    * @return: int
+    * @Date: 2022/6/21
+    穷举所有的可能，我们访问每一个节点 node，检测以 node 为起始节点且向下延深的路径有多少种。
+    我们递归遍历每一个节点的所有可能的路径，然后将这些路径数目加起来即为返回结果。
+    */
+    // 前缀和思路
+    public static int pathSomeSum(HeroNode root, int targetSum) {
+        if (root == null) return 0 ;
+        HashMap<Integer , Integer> map = new HashMap<>() ;
+        map.put(0 , 1) ;
+        int ans = 0 ;
+        prefixAnd(root , map , ans , 0 , targetSum);
+        return ans ;
+    }
+    public static void prefixAnd(HeroNode root , HashMap<Integer,Integer> map , int ans , int sum , int targetSum){
+        sum += root.no ;
+
+        // 存在x，则x的出现次数即是符合条件的序列的出现次数
+        if(map.containsKey(targetSum - sum)){
+            ans += map.get(targetSum - sum) ;
+        }
+
+        // 当前节点的前缀和出现次数+1
+        map.put(sum , map.getOrDefault(sum , 0) + 1) ;
+        if (root.left != null){
+            prefixAnd(root.left , map , ans , sum , targetSum);
+        }
+        if (root.right != null){
+            prefixAnd(root.right , map , ans , sum , targetSum);
+        }
+        // 当前节点的前缀和出现次数-1，即向上返回了
+        map.put(sum , map.get(sum) - 1) ;
+    }
+
 
 }

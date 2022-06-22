@@ -1,7 +1,7 @@
 package com.li.dynamicProgram;
 
 import com.li.binaryTree.BinaryTree;
-import com.li.binaryTree.HeroNode1;
+import com.li.binaryTree.HeroNode;
 
 /**
  * @Author: li wei kai
@@ -26,13 +26,13 @@ public class robIII {
         //创建二叉树
         BinaryTree binaryTree = new BinaryTree();
         //创建需要的节点
-        HeroNode1 root = new HeroNode1(1, "宋江");
-        HeroNode1 node1 = new HeroNode1(2, "吴用");
-        HeroNode1 node2 = new HeroNode1(3, "卢俊义");
-        HeroNode1 node3 = new HeroNode1(4, "林冲");
-        HeroNode1 node4 = new HeroNode1(5, "关胜");
-        HeroNode1 node5 = new HeroNode1(6, "武松");
-        HeroNode1 node6 = new HeroNode1(7, "鲁智深");
+        HeroNode root = new HeroNode(1, "宋江");
+        HeroNode node1 = new HeroNode(2, "吴用");
+        HeroNode node2 = new HeroNode(3, "卢俊义");
+        HeroNode node3 = new HeroNode(4, "林冲");
+        HeroNode node4 = new HeroNode(5, "关胜");
+        HeroNode node5 = new HeroNode(6, "武松");
+        HeroNode node6 = new HeroNode(7, "鲁智深");
         //创建二叉树节点
         binaryTree.setNode(root);
         root.left = node1;
@@ -45,7 +45,7 @@ public class robIII {
         int rob = rob(root);
         System.out.println(rob);
     }
-    public static int rob(HeroNode1 root) {
+    public static int rob(HeroNode root) {
         int[] result = robTree(root) ;
         return Math.max(result[0] , result[1]) ;
     }
@@ -65,7 +65,7 @@ public class robIII {
     //   如果不偷当前节点，那么左右孩⼦就可以偷，⾄于到底偷不偷⼀定是选⼀个最⼤的，所以：
     //   val2 =max(left[0], left[1]) + max(right[0], right[1]);
     //   最后当前节点的状态就是{val2, val1}; 即：{不偷当前节点得到的最⼤⾦钱，偷当前节点得到的最⼤⾦钱}
-    public static int[] robTree(HeroNode1 root){
+    public static int[] robTree(HeroNode root){
         if(root == null){
             return new int[]{0 , 0} ;
         }

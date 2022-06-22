@@ -1,6 +1,6 @@
 package com.li.greedy;
 
-import com.li.binaryTree.HeroNode1;
+import com.li.binaryTree.HeroNode;
 
 /**
  * @Author: li wei kai
@@ -32,7 +32,7 @@ public class binaryTreeCameras {
     //  情况3:左右节点⾄少有⼀个有摄像头: 其⽗节点就应该是2（覆盖的状态）
     //  情况4:头结点没有覆盖: 递归结束之后，可能头结点 还有⼀个⽆覆盖的情况,
     //       所以递归结束之后，还要判断根节点，
-    public static int minCameraCover(HeroNode1 root) {
+    public static int minCameraCover(HeroNode root) {
 
         return 0 ;
     }

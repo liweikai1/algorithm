@@ -6,15 +6,15 @@ package com.li.binaryTree;
  * @Description:定义二叉树的前序、中序、后序遍历方法；定义二叉树的前序、中序、后序查找方法
  */
 public class BinaryTree {
-    private HeroNode1 root ;
+    private HeroNode root ;
 
-    public void setNode(HeroNode1 node) {
+    public void setNode(HeroNode node) {
         this.node = node;
     }
 
-    public HeroNode1 node ;
+    public HeroNode node ;
 
-    public void setRoot(HeroNode1 root) {
+    public void setRoot(HeroNode root) {
         this.root = root;
     }
 }

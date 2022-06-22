@@ -18,8 +18,8 @@ import java.util.Map;
     输出：2
  */
 public class subarraySumEqualsK {
+    // 前缀和
     //本题不能使用滑动窗口，因为数组里面可能包含负数。
-    //所以本题采用前缀和的方式
     public static void main(String[] args) {
         int[] nums = {1,2,3,0,3,4,-1} ;
         int subarraySum = subarraySum(nums, 6);
