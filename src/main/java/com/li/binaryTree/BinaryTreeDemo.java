@@ -54,8 +54,8 @@ public class BinaryTreeDemo {
        /* postNode(root,list) ;*/
 
         //求该树的最大深度
-        /*int depth = maxDepth(root);
-        System.out.println("depth =" + depth);*/
+        int depth = maxDepth(root);
+        System.out.println("depth =" + depth);
 
         //根节点到叶子节点的路径数字之和
        /* int path = sumNumbers(root);
@@ -107,8 +107,8 @@ public class BinaryTreeDemo {
         System.out.println(bottomLeftValue);*/
 
         //向下的路径节点之和
-        int pathSomeSum = pathSomeSum(root, 7);
-        System.out.println(pathSomeSum);
+        /*int pathSomeSum = pathSomeSum(root, 7);
+        System.out.println(pathSomeSum);*/
 
     }
     /**
